@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 import openai
+import config
 
 # bot init
 intents = discord.Intents.default()
@@ -10,7 +11,7 @@ intents.message_content = True
 bot = commands.Bot(command_prefix='>', intents=intents)
 
 # openai init
-openai.api_key = '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'
+openai.api_key = config.AI_TOKEN
 
 def chat_with_bot(message):
     prompt = f"You: {message}\nAkane Akemi:"
@@ -56,4 +57,4 @@ async def on_message(message):
             await message.channel.send(chat_with_bot(user_msg[5:]))
 
 
-bot.run('MTExODYzMDY3MTMwMTIxNDMyOQ.GDqWza.XSEvkdcgP9x1ly-pYF4-KkaWOot3E0Ggoenwlc')
+bot.run(config.BOT_TOKEN)

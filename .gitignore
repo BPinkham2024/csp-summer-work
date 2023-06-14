@@ -24,3 +24,6 @@ ENV/
 # Miscellaneous
 .DS_Store
 *.log
+
+# hidden files
+config.py
