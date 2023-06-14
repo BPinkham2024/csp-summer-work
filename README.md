@@ -1,5 +1,5 @@
 # CSP Summer Work
-cps summer work, don't know exactly what I am going to do yet
+CSP summer work, don't know exactly what I am going to do yet
 
 
 ## **Idea One**
