@@ -1,15 +1,11 @@
 import discord
 from discord.ext import commands
+from discord import app_commands
 import openai
 import config
 
 # bot init
-intents = discord.Intents.default()
-intents.typing = True
-intents.presences = False
-intents.message_content = True
-bot = commands.Bot(command_prefix='>', intents=intents)
-
+bot = commands.Bot(command_prefix='>', intents=discord.Intents.all())
 # openai init
 openai.api_key = config.AI_TOKEN
 
@@ -38,13 +34,35 @@ def chat_with_bot(message):
 async def on_ready():
     print(f'Logged in as {bot.user.name} ({bot.user.id})')
     print('----')
+    try:
+        synced = await bot.tree.sync()
+        print(f'Synced {len(synced)} command(s)')
+    except Exception as e:
+        print(e)
+    
+# @bot.tree.command(name = 'test', description="This is a dest Command")
+# async def test(interaction: discord.Interaction):
+#     # await interaction.response.send_message(f'This is a test, {interaction.user.mention}', ephemeral=True)
+#     """Test Desc"""
+#     await interaction.response.send_message(f'This is a test, {interaction.user.mention}')
+    
+    
+@bot.tree.command(name="chat", description="Chat with Akane Akemi!")
+@app_commands.describe(msg = "msg")
+async def chat(interaction: discord.Interaction, msg: str):
+    # await interaction.response.send_message(chat_with_bot(arg), ephemeral=True)
+    await interaction.response.send_message(chat_with_bot(msg))
+
 
 @bot.event
 async def on_message(message):
-    user = str(message.author)
-    user_msg = str(message.content)
-    channel = str(message.channel.name)
-    print(f'{user}: {user_msg} ({channel})')
+    try:
+        user = str(message.author)
+        user_msg = str(message.content)
+        channel = str(message.channel.name)
+        print(f'{user}: {user_msg} ({channel})')
+    except Exception as e:
+        print('**hidden message**')
 
     if message.author == bot.user:
         return
