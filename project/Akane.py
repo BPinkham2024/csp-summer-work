@@ -47,11 +47,18 @@ async def on_ready():
 #     await interaction.response.send_message(f'This is a test, {interaction.user.mention}')
     
     
+# gpt chatbot commands
 @bot.tree.command(name="chat", description="Chat with Akane Akemi!")
 @app_commands.describe(msg = "msg")
 async def chat(interaction: discord.Interaction, msg: str):
     # await interaction.response.send_message(chat_with_bot(arg), ephemeral=True)
     await interaction.response.send_message(chat_with_bot(msg))
+    
+@bot.tree.command(name="embedded-chat", description="Chat with Akane Akemi but she will responed in an embed.")
+@app_commands.describe(msg = "msg")
+async def chatEmbed(interaction: discord.Interaction, msg: str):
+    # embed = discord.Embed(title='Akane Akemi', description=chat_with_bot(msg), color=0x00FF22)
+    await interaction.response.send_message(embed=discord.Embed(title='Akane Akemi', description=chat_with_bot(msg), color=0xff748c))
 
 
 @bot.event
