@@ -112,5 +112,47 @@
         "content": "As an AI assistant, I have certain limitations. I am unable to perform physical tasks or experience emotions. I rely on the information provided to me and my programming to assist with answering questions and providing helpful responses. Additionally, I am constantly learning and improving",
         "timestamp": "2023-06-15 02:28:21.545000+00:00",
         "channel": "general"
+    },
+    {
+        "author": "bpinkham1223",
+        "content": "hello",
+        "timestamp": "2023-06-15 16:42:36.668000+00:00",
+        "channel": "general"
+    },
+    {
+        "author": "Akane Akemi#7845",
+        "content": "hello, bpinkham1223!",
+        "timestamp": "2023-06-15 16:42:36.934000+00:00",
+        "channel": "general"
+    },
+    {
+        "author": "Akane Akemi#7845",
+        "content": "<coroutine object transcribe_audio at 0x000002845D9CB040>",
+        "timestamp": "2023-06-15 20:12:44.092000+00:00",
+        "channel": "general"
+    },
+    {
+        "author": "Akane Akemi#7845",
+        "content": "",
+        "timestamp": "2023-06-15 20:51:38.671000+00:00",
+        "channel": "general"
+    },
+    {
+        "author": "Akane Akemi#7845",
+        "content": "",
+        "timestamp": "2023-06-15 20:52:30.885000+00:00",
+        "channel": "general"
+    },
+    {
+        "author": "Akane Akemi#7845",
+        "content": "",
+        "timestamp": "2023-06-15 20:52:38.596000+00:00",
+        "channel": "general"
+    },
+    {
+        "author": "Akane Akemi#7845",
+        "content": "",
+        "timestamp": "2023-06-15 20:54:55.091000+00:00",
+        "channel": "general"
     }
 ]

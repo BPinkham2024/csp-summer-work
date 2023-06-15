@@ -1,12 +1,9 @@
 import json
-import datetime
-from aiohttp import web
 import discord
 from discord.ext import commands
 from discord import app_commands
 import openai
 import config
-
 
 
 # bot init
@@ -62,9 +59,9 @@ async def on_ready():
         print(f'Synced {len(synced)} command(s)')
     except Exception as e:
         print(e)
+        
     
-    
-# gpt chatbot commands
+# commands
 @bot.tree.command(name="chat", description="Chat with Akane Akemi!")
 @app_commands.describe(msg = "msg")
 async def chat(interaction: discord.Interaction, msg: str):
@@ -73,9 +70,33 @@ async def chat(interaction: discord.Interaction, msg: str):
     
 @bot.tree.command(name="embedded-chat", description="Chat with Akane Akemi but she will responed in an embed.")
 @app_commands.describe(msg = "msg")
-async def chatEmbed(interaction: discord.Interaction, msg: str):
+async def chat_embed(interaction: discord.Interaction, msg: str):
     # embed = discord.Embed(title='Akane Akemi', description=chat_with_bot(msg), color=0x00FF22)
     await interaction.response.send_message(embed=discord.Embed(title='Akane Akemi', description=chat_with_bot(msg), color=0xff748c))
+
+@bot.tree.command(name="whothis")
+async def whothis_command(interaction: discord.Interaction, member: discord.Member):
+    embed=discord.Embed(title=f"{member.name}", description=f"ID: {member.id}")
+    embed.add_field(name="Join Date", value=member.created_at.strftime("%m/%d/%Y %H:%M:%S"), inline=False)
+    embed.add_field(name="Badges", value=", ".join([badge.name for badge in member.public_flags.all()]), inline=False)
+    embed.add_field(name="Activity", value=member.activity)
+    embed.set_thumbnail(url=member.avatar.url)
+    await interaction.response.send_message(embed=embed)
+
+
+# context menues
+@bot.tree.context_menu(name="whothis")
+async def whothis(interaction: discord.Interaction, member: discord.Member):
+    embed=discord.Embed(title=f"{member.name}", description=f"ID: {member.id}")
+    embed.add_field(name="Join Date", value=member.created_at.strftime("%m/%d/%Y %H:%M:%S"), inline=False)
+    embed.add_field(name="Badges", value=", ".join([badge.name for badge in member.public_flags.all()]), inline=False)
+    embed.add_field(name="Activity", value=member.activity)
+    embed.set_thumbnail(url=member.avatar.url)
+    await interaction.response.send_message(embed=embed)
+
+
+
+
 
 
 @bot.event
@@ -128,4 +149,5 @@ def save_chat_log(chat_log):
     with open('chat_log.json', 'w') as file:
         json.dump(chat_log, file, indent=4)
 
+# run bot :)
 bot.run(config.BOT_TOKEN)
