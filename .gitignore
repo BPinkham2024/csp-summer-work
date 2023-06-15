@@ -27,3 +27,4 @@ ENV/
 
 # hidden files
 config.py
+chat_log.json
