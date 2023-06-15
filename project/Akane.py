@@ -1,8 +1,13 @@
+import json
+import datetime
+from aiohttp import web
 import discord
 from discord.ext import commands
 from discord import app_commands
 import openai
 import config
+
+
 
 # bot init
 bot = commands.Bot(command_prefix='>', intents=discord.Intents.all())
@@ -40,12 +45,6 @@ async def on_ready():
     except Exception as e:
         print(e)
     
-# @bot.tree.command(name = 'test', description="This is a dest Command")
-# async def test(interaction: discord.Interaction):
-#     # await interaction.response.send_message(f'This is a test, {interaction.user.mention}', ephemeral=True)
-#     """Test Desc"""
-#     await interaction.response.send_message(f'This is a test, {interaction.user.mention}')
-    
     
 # gpt chatbot commands
 @bot.tree.command(name="chat", description="Chat with Akane Akemi!")
@@ -67,9 +66,12 @@ async def on_message(message):
         user = str(message.author)
         user_msg = str(message.content)
         channel = str(message.channel.name)
-        print(f'{user}: {user_msg} ({channel})')
+        data = str(f'{user}: {user_msg} ({channel})')
+        print(data)
     except Exception as e:
         print('**hidden message**')
+        
+    log_message(message)
 
     if message.author == bot.user:
         return
@@ -80,6 +82,32 @@ async def on_message(message):
         
         if user_msg.lower().startswith('>chat'):
             await message.channel.send(chat_with_bot(user_msg[5:]))
+            
 
+# log chat messages
+def log_message(message):
+    message_data = {
+        'author': str(message.author),
+        'content': message.content,
+        'timestamp': str(message.created_at),
+        'channel': str(message.channel)
+    }
+
+    chat_log = load_chat_log()
+    chat_log.append(message_data)
+    save_chat_log(chat_log)
+
+def load_chat_log():
+    try:
+        with open('chat_log.json', 'r') as file:
+            chat_log = json.load(file)
+    except FileNotFoundError:
+        chat_log = []
+
+    return chat_log
+
+def save_chat_log(chat_log):
+    with open('chat_log.json', 'w') as file:
+        json.dump(chat_log, file, indent=4)
 
 bot.run(config.BOT_TOKEN)

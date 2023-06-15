@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html class="dark" style="color-scheme: dark;">
+<head>
+    <title>Command Log</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #2b2b2b;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #ffffff;
+        }
+
+        #log {
+            width: 400px;
+            height: 700px;
+            overflow: auto;
+            border: 1px solid #747474;
+            background-color: #1d1d1d;
+            padding: 10px;
+        }
+
+        .log-entry {
+            margin-bottom: 10px;
+        }
+
+        .log-timestamp {
+            color: #929292;
+            font-size: 12px;
+        }
+
+        .log-command {
+            margin-top: 5px;
+        }
+    </style>
+    <script>
+        function loadChatLog() {
+            fetch('http://localhost:5000/chat_log')
+            .then(response => response.json())
+            .then(data => {
+                const logElement = document.getElementById('log');
+                logElement.innerHTML = '';
+                data.forEach(entry => {
+                    const logEntry = document.createElement('div');
+                    logEntry.classList.add('log-entry');
+        
+                    const timestampElement = document.createElement('p');
+                    timestampElement.classList.add('log-timestamp');
+                    timestampElement.textContent = '[' + entry.timestamp + ']';
+                    logEntry.appendChild(timestampElement);
+        
+                    const authorElement = document.createElement('p');
+                    authorElement.classList.add('log-author');
+                    authorElement.textContent = entry.author;
+                    logEntry.appendChild(authorElement);
+        
+                    const contentElement = document.createElement('p');
+                    contentElement.classList.add('log-content');
+                    contentElement.textContent = entry.content;
+                    logEntry.appendChild(contentElement);
+        
+                    logElement.appendChild(logEntry);
+                });
+                logElement.scrollTop = logElement.scrollHeight;
+            })
+            .catch(error => console.error(error));
+        }
+        document.addEventListener('DOMContentLoaded', loadChatLog);
+        setInterval(loadChatLog, 3000);
+    </script>
+</head>
+<body>
+    <h1>Chat Log</h1>
+
+    <div id="log"></div>
+
+    <script>
+        function logCommand(command) {
+            var logElement = document.getElementById('log');
+            var now = new Date();
+            var timestamp = now.toLocaleTimeString();
+            var logEntry = document.createElement('div');
+            logEntry.classList.add('log-entry');
+
+            var timestampElement = document.createElement('p');
+            timestampElement.classList.add('log-timestamp');
+            timestampElement.textContent = '[' + timestamp + ']';
+            logEntry.appendChild(timestampElement);
+
+            var commandElement = document.createElement('p');
+            commandElement.classList.add('log-command');
+            commandElement.textContent = command;
+
+            logEntry.appendChild(commandElement);
+            logElement.appendChild(logEntry);
+            logElement.scrollTop = logElement.scrollHeight;
+        }
+    </script>
+</body>
+</html>
