@@ -52,5 +52,65 @@
         "content": "Hi there! How can I help you?",
         "timestamp": "2023-06-15 00:34:54.514000+00:00",
         "channel": "general"
+    },
+    {
+        "author": "bpinkham1223",
+        "content": "khjlfgd",
+        "timestamp": "2023-06-15 01:57:20.186000+00:00",
+        "channel": "general"
+    },
+    {
+        "author": "Akane Akemi#7845",
+        "content": "8",
+        "timestamp": "2023-06-15 01:58:06.540000+00:00",
+        "channel": "general"
+    },
+    {
+        "author": "Akane Akemi#7845",
+        "content": "Hello! How can I assist you today?",
+        "timestamp": "2023-06-15 02:25:31.564000+00:00",
+        "channel": "general"
+    },
+    {
+        "author": "Akane Akemi#7845",
+        "content": "I am an AI language model designed to assist and communicate with you. You can call me OpenAI. How can I assist you today?",
+        "timestamp": "2023-06-15 02:25:41.300000+00:00",
+        "channel": "general"
+    },
+    {
+        "author": "Akane Akemi#7845",
+        "content": "Akane Akemi. How may I assist you?",
+        "timestamp": "2023-06-15 02:27:00.446000+00:00",
+        "channel": "general"
+    },
+    {
+        "author": "Akane Akemi#7845",
+        "content": "My name is Akane Akemi and I am a helpful assistant. How may I assist you today?",
+        "timestamp": "2023-06-15 02:27:10.497000+00:00",
+        "channel": "general"
+    },
+    {
+        "author": "bpinkham1223",
+        "content": ">chat what are your limitations?",
+        "timestamp": "2023-06-15 02:27:29.142000+00:00",
+        "channel": "general"
+    },
+    {
+        "author": "Akane Akemi#7845",
+        "content": "As an AI language model, I have certain limitations in terms of my abilities and knowledge. While I can provide helpful responses and information, I may not always have the most accurate or complete answers to every question. Additionally, I do not have the ability",
+        "timestamp": "2023-06-15 02:27:33.393000+00:00",
+        "channel": "general"
+    },
+    {
+        "author": "bpinkham1223",
+        "content": ">chat what are your limitations?",
+        "timestamp": "2023-06-15 02:28:16.195000+00:00",
+        "channel": "general"
+    },
+    {
+        "author": "Akane Akemi#7845",
+        "content": "As an AI assistant, I have certain limitations. I am unable to perform physical tasks or experience emotions. I rely on the information provided to me and my programming to assist with answering questions and providing helpful responses. Additionally, I am constantly learning and improving",
+        "timestamp": "2023-06-15 02:28:21.545000+00:00",
+        "channel": "general"
     }
 ]

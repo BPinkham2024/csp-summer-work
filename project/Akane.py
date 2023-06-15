@@ -14,21 +14,39 @@ bot = commands.Bot(command_prefix='>', intents=discord.Intents.all())
 # openai init
 openai.api_key = config.AI_TOKEN
 
-def chat_with_bot(message):
-    prompt = f"You: {message}\nAkane Akemi:"
-
-    response = openai.Completion.create(
-        engine='text-davinci-003', 
-        prompt=prompt,
-        max_tokens=50, 
-        temperature=0.7,
-        n=1,
-        stop=None,
-        timeout=5
-    )
+# def chat_with_bot(message):
+#     prompt = f"You: {message}\nAkane Akemi:"
+#     response = openai.ChatCompletion.create(
+#         engine='gpt-3.5-turbo', 
+#         prompt=prompt,
+#         max_tokens=50, 
+#         temperature=0.7,
+#         n=1,
+#         stop=None,
+#         timeout=5
+#     )
+#     if response and response.choices:
+#         return response.choices[0].text.strip()
+#     else:
+#         return "Sorry, I couldn't generate a response at the moment."
     
+    
+def chat_with_bot(message):
+    chat_prompt = [
+        {"role": "system", "content": "You are Akane Akemi, a helpful assistant. You will answer any question and whenever you are asked your name you will respond with 'Akane Akemi'"},
+        {"role": "user", "content": message}
+    ]
+
+    response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo-16k",
+        messages=chat_prompt,
+        max_tokens=50,
+        temperature=0.7
+    )
+
     if response and response.choices:
-        return response.choices[0].text.strip()
+        reply = response.choices[0].message["content"]
+        return reply.strip()
     else:
         return "Sorry, I couldn't generate a response at the moment."
 
